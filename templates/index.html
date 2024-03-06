@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    {% from 'bootstrap5/form.html' import render_form %}
+    {% block styles %}
+    <!-- Load Bootstrap-Flask CSS here -->
+    {{ bootstrap.load_css() }}
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+    <link
+      href="{{ url_for('static', filename='css/styles.css') }}"
+      rel="stylesheet"
+    />
+    {% endblock %}
+
+</head>
+<body>
+<div class="container px-4 px-lg-5">
+    <h1>Write your todo list</h1>
+    {{ render_form(form) }}
+    {% for do in todo %}
+    <div>
+
+        <input type="checkbox" id="todo" name="todo" class="strikethrough">
+        <label for="todo" class="strikeThis">{{do.todo}}</label>
+
+
+    </div>
+
+    {% endfor %}
+    <div class="d-flex justify-content-end mb-4">
+        <a
+          class="btn btn-primary float-right"
+          href="{{url_for('delete')}}"
+          >Clear</a
+        >
+      </div>
+</div>
+</body>
+</html>
